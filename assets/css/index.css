@@ -1,0 +1,170 @@
+/* DEFAULTS */
+*,
+*::before,
+*::after,
+*::placeholder {
+  margin: 0;
+  padding: 0%;
+  border: 0;
+  outline: 0;
+  text-decoration: none;
+  list-style: none;
+  resize: none;
+  font-size: 16px;
+  font-weight: normal;
+  color: black;
+  background-color: rgba(0, 0, 0, 0);
+
+  font-family: "Ariel";
+}
+
+#screen {
+  background-color: blue;
+  width: 50%;
+  height: 512px;
+  margin-top: 64px;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+}
+.ball {
+  background-color: red;
+  width: 256px;
+  height: 256px;
+  border-radius: 100%;
+  animation: ball-jump 2s linear infinite;
+}
+
+#space-box {
+  background-color: black;
+  width: 75%;
+  height: 1024px;
+  justify-self: center;
+  margin-top: 64px;
+  margin-bottom: 64px;
+}
+#space-box .space-light {
+  background-color: antiquewhite;
+  width: 256px;
+  height: 256px;
+  position: absolute;
+  /* ! Nevermind, Srdjan interrupted us so we don't have time for this one. */
+}
+
+#card-section {
+  background-color: black;
+  width: 75%;
+  height: 1024px;
+  justify-self: center;
+  margin-top: 64px;
+  margin-bottom: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#card-section .card-back {
+  position: relative;
+  background-color: rgb(202, 145, 0);
+  width: 256px;
+  height: 384px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  border: 2px solid rgba(0, 255, 255, 0);
+  box-shadow: 0px 0px 32px 16px rgba(0, 255, 255, 0);
+  transition: border 1s ease-in-out, box-shadow 2s ease-in-out,
+    border 1s ease-in-out;
+}
+#card-section .card-front {
+  background-color: rgb(255, 217, 82);
+  align-self: center;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  --distance: 16px;
+  width: calc(100% - var(--distance));
+  height: calc(100% - var(--distance));
+}
+#card-section .card-front .text {
+  max-width: 75%;
+  text-align: center;
+  text-shadow: 0 0 16px rgba(0, 255, 255, 0);
+  transition: all 0.5s ease-in-out;
+}
+#card-section .card-back .glow {
+  align-self: center;
+  width: 0%;
+  height: 200%;
+  background-color: rgb(0, 255, 255);
+  animation: card-glow-spin 2s linear infinite;
+  transition: width 1s ease-in-out;
+  filter: blur(16px);
+}
+#card-section .card-back:hover {
+  box-shadow: 0px 0px 32px 16px rgba(0, 255, 255, 1);
+  border: 2px solid rgba(0, 255, 255, 1);
+}
+#card-section .card-back:hover .glow {
+  width: 50%;
+}
+#card-section .card-back:hover .card-front .text {
+  text-shadow: 0 0 16px rgba(0, 255, 255, 1), 0 0 4px rgb(255, 255, 255),
+    0 0 16px rgba(0, 255, 255, 1);
+}
+
+@keyframes card-glow-spin {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
+
+@keyframes ball-jump {
+  0% {
+    margin-top: 0;
+    width: 256px;
+    filter: blur(0);
+  }
+  12.5% {
+    width: 128px;
+  }
+  12.6% {
+    filter: blur(16px);
+  }
+  25% {
+    margin-top: 256px;
+  }
+  25.1% {
+    filter: blur(0px);
+  }
+  37.5% {
+  }
+  50% {
+    width: 512px;
+  }
+  62.5% {
+    width: 128px;
+    margin-top: 256px;
+    filter: blur(0);
+  }
+  74.9% {
+    filter: blur(16px);
+  }
+  75% {
+    margin-top: 0;
+    width: 256px;
+  }
+  75.1% {
+    filter: blur(0);
+  }
+  87.5% {
+    width: 384px;
+  }
+  100% {
+    width: 256px;
+  }
+}
